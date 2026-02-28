@@ -1,0 +1,89 @@
+name: Bug Report
+description: Report an API bug or unexpected behavior
+labels: ["bug", "needs-triage"]
+body:
+  - type: checkboxes
+    id: preflight
+    attributes:
+      label: Before submitting
+      options:
+        - label: I searched existing issues and this is not a duplicate
+          required: true
+        - label: This is not a security vulnerability (use security@withflintpay.com instead)
+          required: true
+        - label: I have removed any API keys or sensitive data from this report
+          required: true
+
+  - type: dropdown
+    id: service
+    attributes:
+      label: Service
+      description: Which API service does this affect?
+      options:
+        - OrderService
+        - PaymentIntentService
+        - PaymentMethodService
+        - CouponService
+        - CustomerService
+        - SubscriptionService
+        - CheckoutSessionService
+        - ItemService
+        - RefundService
+        - MerchantService
+        - SettingsService
+        - Other
+    validations:
+      required: true
+
+  - type: input
+    id: endpoint
+    attributes:
+      label: Endpoint
+      description: The full RPC path
+      placeholder: "e.g. flint.v1.commerce.OrderService/CreateOrder"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: environment
+    attributes:
+      label: Environment
+      options:
+        - Production
+        - Staging
+    validations:
+      required: true
+
+  - type: textarea
+    id: request
+    attributes:
+      label: Request body
+      description: Paste the full request body. Remove any API keys or PII.
+      render: json
+    validations:
+      required: true
+
+  - type: textarea
+    id: response
+    attributes:
+      label: Response received
+      description: Paste the full response or error message.
+      render: json
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+      description: What did you expect to happen?
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+      description: Anything else that might help — frequency, conditions, workarounds tried.
+    validations:
+      required: false
